@@ -1,28 +1,16 @@
-package com.botica.botica.api.entity;
-
-import jakarta.persistence.*;
+package com.botica.botica.api.producto.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name ="Orders")
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "order_date")
     private LocalDateTime date;
-
-    @Column(precision = 10, scale = 2)
     private BigDecimal total;
-
     private String paymentType;
 
-    public Order(){
-    }
+    public Order() {}
 
     public Order(Long id, LocalDateTime date, BigDecimal total, String paymentType) {
         this.id = id;

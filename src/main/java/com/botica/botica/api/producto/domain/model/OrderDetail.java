@@ -1,23 +1,12 @@
-package com.botica.botica.api.entity;
-
-import jakarta.persistence.*;
+package com.botica.botica.api.producto.domain.model;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "OrderDetails")
 public class OrderDetail {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer quantity;
-
-    @Column(precision = 10, scale = 2)
     private BigDecimal price;
-
-    @Column(precision = 10, scale = 2)
     private BigDecimal subtotal;
 
     public OrderDetail(){

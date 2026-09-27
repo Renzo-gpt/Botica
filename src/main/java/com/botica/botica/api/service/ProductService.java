@@ -21,11 +21,11 @@ public class ProductService {
 
     public Product findById(Long id){
         return this.productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Producto con " +id+ " no encontrado!"));
+                .orElseThrow(() -> new EntityNotFoundException("Producto con " + id + " no encontrado!"));
     }
 
     public Product create(Product product){
-        return productRepository.save(product);
+        return this.productRepository.save(product);
     }
 
     /* falta pulir

@@ -1,30 +1,31 @@
-package com.botica.botica.api.entity;
+package com.botica.botica.api.producto.infrastructure.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "OrderDetails")
-public class OrderDetail {
+@Entity (name = "OrderDetail")
+@Table (name = "order_details")
+public class EntityOrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private Integer quantity;
 
-    @Column(precision = 10, scale = 2)
+    @NotNull
     private BigDecimal price;
 
-    @Column(precision = 10, scale = 2)
+    @NotNull
     private BigDecimal subtotal;
 
-    public OrderDetail(){
-    }
+    public EntityOrderDetail(){}
 
-    public OrderDetail(Long id, Integer quantity, BigDecimal price, BigDecimal subtotal) {
-        this.id = id;
+    public EntityOrderDetail(Integer quantity, BigDecimal price, BigDecimal subtotal) {
         this.quantity = quantity;
         this.price = price;
         this.subtotal = subtotal;
@@ -62,3 +63,4 @@ public class OrderDetail {
         this.subtotal = subtotal;
     }
 }
+

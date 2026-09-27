@@ -1,27 +1,17 @@
-package com.botica.botica.api.entity;
+package com.botica.botica.api.producto.domain.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 
-@Entity
-@Table(name = "Customers")
 public class Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true)
     private String dni;
-
     private String firstName;
     private String lastName;
     private String phone;
-
-    @Column(unique = true)
     private String email;
 
-    public Customer() {
-    }
+    public Customer(){}
 
     public Customer(Long id, String dni, String firstName, String lastName, String phone, String email) {
         this.id = id;
