@@ -1,43 +1,20 @@
-package com.botica.botica.api.entity;
+package com.botica.botica.api.producto.infrastructure.adapter.in;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Customers")
-public class Customer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(unique = true)
+public class CustomerRequestDto {
     private String dni;
-
     private String firstName;
     private String lastName;
     private String phone;
-
-    @Column(unique = true)
     private String email;
 
-    public Customer() {
-    }
+    public CustomerRequestDto(){}
 
-    public Customer(Long id, String dni, String firstName, String lastName, String phone, String email) {
-        this.id = id;
+    public CustomerRequestDto(String dni, String firstName, String lastName, String phone, String email) {
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDni() {

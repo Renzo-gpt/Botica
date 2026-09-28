@@ -1,45 +1,22 @@
-package com.botica.botica.api.entity;
-
-import jakarta.persistence.*;
+package com.botica.botica.api.producto.application.port.in;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table (name = "products")
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CreateProductCommand {
 
     private String name;
     private Integer stock;
-
-    @Column(precision = 10, scale = 2)
     private BigDecimal price;
-
     private Boolean status;
     private LocalDate expirationDate;
 
-    public Product() {
-    }
-
-    public Product(Long id, String name, Integer stock, BigDecimal price, Boolean status, LocalDate expirationDate) {
-        this.id = id;
+    public CreateProductCommand(String name, Integer stock, BigDecimal price, Boolean status, LocalDate expirationDate) {
         this.name = name;
         this.stock = stock;
         this.price = price;
         this.status = status;
         this.expirationDate = expirationDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

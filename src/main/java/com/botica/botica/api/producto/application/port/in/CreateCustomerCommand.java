@@ -1,50 +1,21 @@
-package com.botica.botica.api.producto.infrastructure.entities;
+package com.botica.botica.api.producto.application.port.in;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+public class CreateCustomerCommand {
 
-@Entity (name = "Customer")
-@Table (name = "customers")
-public class EntityCustomer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank
     private String dni;
-
-    @NotBlank
     private String firstName;
-
-    @NotBlank
     private String lastName;
-
-    @NotBlank
     private String phone;
-
-    @NotBlank
-    @Email
     private String email;
 
-    public EntityCustomer(){}
+    public CreateCustomerCommand(){}
 
-    public EntityCustomer(String dni, String firstName, String lastName, String phone, String email) {
+    public CreateCustomerCommand(String dni, String firstName, String lastName, String phone, String email) {
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getDni() {

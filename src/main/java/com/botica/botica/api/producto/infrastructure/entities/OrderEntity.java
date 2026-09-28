@@ -1,31 +1,31 @@
-package com.botica.botica.api.entity;
+package com.botica.botica.api.producto.infrastructure.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name ="Orders")
-public class Order {
+@Entity (name = "Order")
+@Table (name = "orders")
+public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_date")
     private LocalDateTime date;
 
-    @Column(precision = 10, scale = 2)
+    @NotNull
     private BigDecimal total;
 
+    @NotBlank
     private String paymentType;
 
-    public Order(){
-    }
+    public OrderEntity(){}
 
-    public Order(Long id, LocalDateTime date, BigDecimal total, String paymentType) {
-        this.id = id;
+    public OrderEntity(LocalDateTime date, BigDecimal total, String paymentType) {
         this.date = date;
         this.total = total;
         this.paymentType = paymentType;

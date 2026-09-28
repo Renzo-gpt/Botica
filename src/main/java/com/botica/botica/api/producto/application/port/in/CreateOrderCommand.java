@@ -1,42 +1,18 @@
-package com.botica.botica.api.producto.infrastructure.entities;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+package com.botica.botica.api.producto.application.port.in;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity (name = "Order")
-@Table (name = "orders")
-public class EntityOrder {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CreateOrderCommand {
 
     private LocalDateTime date;
-
-    @NotNull
     private BigDecimal total;
-
-    @NotBlank
     private String paymentType;
 
-    public EntityOrder(){}
-
-    public EntityOrder(LocalDateTime date, BigDecimal total, String paymentType) {
+    public CreateOrderCommand(LocalDateTime date, BigDecimal total, String paymentType) {
         this.date = date;
         this.total = total;
         this.paymentType = paymentType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getDate() {

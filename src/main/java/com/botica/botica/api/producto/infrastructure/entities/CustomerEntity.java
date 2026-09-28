@@ -1,18 +1,36 @@
-package com.botica.botica.api.producto.domain.model;
+package com.botica.botica.api.producto.infrastructure.entities;
 
-public class Customer {
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity (name = "Customer")
+@Table (name = "customers")
+public class CustomerEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String dni;
+
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @NotBlank
     private String phone;
+
+    @NotBlank
+    @Email
     private String email;
 
-    public Customer(){}
+    public CustomerEntity(){}
 
-    public Customer(Long id, String dni, String firstName, String lastName, String phone, String email) {
-        this.id = id;
+    public CustomerEntity(String dni, String firstName, String lastName, String phone, String email) {
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;

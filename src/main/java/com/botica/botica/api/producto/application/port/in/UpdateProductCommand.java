@@ -1,35 +1,19 @@
-package com.botica.botica.api.producto.infrastructure.entities;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+package com.botica.botica.api.producto.application.port.in;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity (name = "Product")
-@Table (name = "products")
-public class EntityProduct {
+public class UpdateProductCommand {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String name;
-
-    @NotNull
     private Integer stock;
-
-    @NotNull
     private BigDecimal price;
     private Boolean status;
     private LocalDate expirationDate;
 
-
-    public EntityProduct(){}
-
-    public EntityProduct(String name, Integer stock, BigDecimal price, Boolean status, LocalDate expirationDate) {
+    public UpdateProductCommand(Long id, String name, Integer stock, BigDecimal price, Boolean status, LocalDate expirationDate) {
+        this.id = id;
         this.name = name;
         this.stock = stock;
         this.price = price;

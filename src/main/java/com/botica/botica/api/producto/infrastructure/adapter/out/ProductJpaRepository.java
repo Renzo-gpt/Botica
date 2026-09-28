@@ -1,7 +1,7 @@
 package com.botica.botica.api.producto.infrastructure.adapter.out;
 
-import com.botica.botica.api.producto.infrastructure.entities.EntityProduct;
+import com.botica.botica.api.producto.infrastructure.entities.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductJpaRepository extends JpaRepository<EntityProduct, Long> {
+public interface ProductJpaRepository extends JpaRepository<ProductEntity, Long> {
 }
