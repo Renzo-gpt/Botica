@@ -19,17 +19,9 @@ public class CustomerController {
 
     @PostMapping
     public CustomerResponseDto create (@RequestBody CustomerRequestDto request){
-            CreateCustomerCommand cmd = new CreateCustomerCommand();
-            cmd.setDni(request.getDni());
-            cmd.setFirstName(request.getFirstName());
-            cmd.setLastName(request.getLastName());
-            cmd.setPhone(request.getPhone());
-            cmd.setEmail(request.getEmail());
-
-            Customer customerCreado = CreateCustomerCommand.create(cmd);
-
-
-            return this.createCustomerUseCase.create(r);
+        CreateCustomerCommand command = CustomerWebMapper.toCommand(request);
+        Customer customer = createCustomerUseCase.create(command);
+        return CustomerWebMapper.toCustomerResponseDto(customer);
     }
 
 

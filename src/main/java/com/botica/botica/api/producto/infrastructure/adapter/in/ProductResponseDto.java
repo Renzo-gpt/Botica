@@ -1,33 +1,22 @@
-package com.botica.botica.api.producto.application.port.in;
+package com.botica.botica.api.producto.infrastructure.adapter.in;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class UpdateProductCommand {
+public class ProductResponseDto {
 
-    private Long id;
     private String name;
     private Integer stock;
     private BigDecimal price;
-    private Boolean status;
     private LocalDate expirationDate;
 
+    public ProductResponseDto(){}
 
-    public UpdateProductCommand(Long id, String name, Integer stock, BigDecimal price, Boolean status, LocalDate expirationDate) {
-        this.id = id;
+    public ProductResponseDto(String name, Integer stock, BigDecimal price, LocalDate expirationDate) {
         this.name = name;
         this.stock = stock;
         this.price = price;
-        this.status = status;
         this.expirationDate = expirationDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -52,14 +41,6 @@ public class UpdateProductCommand {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public LocalDate getExpirationDate() {
