@@ -2,6 +2,8 @@ package com.botica.botica.api.producto.application.service;
 
 import com.botica.botica.api.producto.application.port.in.*;
 import com.botica.botica.api.producto.application.port.out.ProductRepositoryPort;
+import com.botica.botica.api.producto.domain.exception.ProductInactiveException;
+import com.botica.botica.api.producto.domain.exception.ProductNotFoundException;
 import com.botica.botica.api.producto.domain.model.Product;
 import org.springframework.stereotype.Service;
 
@@ -34,24 +36,27 @@ public class ProductService implements CreateProductUseCase, GetProductUseCase, 
 
     @Override
     public Product findById(Long id) {
-        return this.repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+        Product product = this.repository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
 
+        if (Boolean.FALSE.equals(product.getStatus())){
+            throw new ProductInactiveException("The product with id " + id + " is inactive.");
+        }
+
+        return product;
     }
 
     @Override
     public Product update(UpdateProductCommand updateProductCmd) {
-        Product existingProduct = this.repository.findById(updateProductCmd.getId())
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + updateProductCmd.getId()));
+        Product product = this.repository.findById(updateProductCmd.getId())
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + updateProductCmd.getId()));
 
-        Product p = new Product();
-        p.setId(updateProductCmd.getId());
-        p.setName(updateProductCmd.getName());
-        p.setStock(updateProductCmd.getStock());
-        p.setPrice(updateProductCmd.getPrice());
-        p.setStatus(updateProductCmd.getStatus());
-        p.setExpirationDate(updateProductCmd.getExpirationDate());
+        product.setName(updateProductCmd.getName());
+        product.setStock(updateProductCmd.getStock());
+        product.setPrice(updateProductCmd.getPrice());
+        product.setStatus(updateProductCmd.getStatus());
+        product.setExpirationDate(updateProductCmd.getExpirationDate());
 
-        return this.repository.save(p);
+        return this.repository.save(product);
     }
 }

@@ -1,14 +1,28 @@
 package com.botica.botica.api.producto.infrastructure.adapter.in;
 
+import jakarta.validation.constraints.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ProductRequestDto {
 
+    @NotBlank(message = "El nombre no puede estar vacío")
     private String name;
+
+    @NotNull(message = "El stock es obligatorio")
+    @Min(value = 0, message = "El stock no puede ser negativo")
     private Integer stock;
+
+    @NotNull(message = "El precio es obligatorio")
+    @DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor a 0")
     private BigDecimal price;
+
+    @NotNull(message = "El estado es obligatorio")
     private Boolean status;
+
+    @NotNull(message = "La fecha de vencimiento es obligatoria")
+    @Future(message = "La fecha de vencimiento debe ser en el futuro")
     private LocalDate expirationDate;
 
     public ProductRequestDto(){}

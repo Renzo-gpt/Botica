@@ -14,14 +14,8 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String name;
-
-    @NotNull
     private Integer stock;
-
-    @NotNull
     private BigDecimal price;
     private Boolean status;
     private LocalDate expirationDate;

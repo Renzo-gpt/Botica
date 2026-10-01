@@ -33,9 +33,11 @@ public class ProductWebMapper {
 
     public static ProductResponseDto toProductResponseDto (Product product){
         return new ProductResponseDto(
+                product.getId(),
                 product.getName(),
                 product.getStock(),
                 product.getPrice(),
+                product.getStatus(),
                 product.getExpirationDate()
         );
     }

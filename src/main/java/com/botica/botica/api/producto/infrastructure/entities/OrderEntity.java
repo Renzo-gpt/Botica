@@ -1,8 +1,6 @@
 package com.botica.botica.api.producto.infrastructure.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,17 +13,18 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerEntity customer;
     private LocalDateTime date;
-
-    @NotNull
     private BigDecimal total;
-
-    @NotBlank
     private String paymentType;
 
     public OrderEntity(){}
 
-    public OrderEntity(LocalDateTime date, BigDecimal total, String paymentType) {
+    public OrderEntity(Long id, CustomerEntity customer, LocalDateTime date, BigDecimal total, String paymentType) {
+        this.id = id;
+        this.customer = customer;
         this.date = date;
         this.total = total;
         this.paymentType = paymentType;
@@ -37,6 +36,14 @@ public class OrderEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
     }
 
     public LocalDateTime getDate() {

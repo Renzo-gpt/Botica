@@ -9,6 +9,8 @@ public class CreateOrderCommand {
     private BigDecimal total;
     private String paymentType;
 
+    public CreateOrderCommand(){}
+
     public CreateOrderCommand(LocalDateTime date, BigDecimal total, String paymentType) {
         this.date = date;
         this.total = total;

@@ -11,21 +11,10 @@ public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String dni;
-
-    @NotBlank
     private String firstName;
-
-    @NotBlank
     private String lastName;
-
-    @NotBlank
     private String phone;
-
-    @NotBlank
-    @Email
     private String email;
 
     public CustomerEntity(){}

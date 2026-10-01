@@ -1,10 +1,27 @@
 package com.botica.botica.api.producto.infrastructure.adapter.in;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class CustomerRequestDto {
+
+    @NotBlank(message = "El DNI es obligatorio")
+    @Size(min = 8, max = 8, message = "El DNI debe tener exactamente 8 dígitos")
     private String dni;
+
+    @NotBlank(message = "El nombre es obligatorio")
     private String firstName;
+
+    @NotBlank(message = "El apellido es obligatorio")
     private String lastName;
+
+    @Pattern(regexp = "\\d{9}", message = "El teléfono debe contener 9 dígitos")
     private String phone;
+
+    @NotBlank(message = "El correo electrónico es obligatorio")
+    @Email(message = "Debe proporcionar una dirección de correo válida")
     private String email;
 
     public CustomerRequestDto(){}

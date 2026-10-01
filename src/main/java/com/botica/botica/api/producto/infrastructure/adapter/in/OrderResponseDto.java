@@ -1,40 +1,20 @@
-package com.botica.botica.api.producto.domain.model;
+package com.botica.botica.api.producto.infrastructure.adapter.in;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Order {
+public class OrderResponseDto {
 
-    private Long id;
-    private Long customerId;
     private LocalDateTime date;
     private BigDecimal total;
     private String paymentType;
 
-    public Order() {}
+    public OrderResponseDto(){}
 
-    public Order(Long id, Long customerId, LocalDateTime date, BigDecimal total, String paymentType) {
-        this.id = id;
-        this.customerId = customerId;
+    public OrderResponseDto(LocalDateTime date, BigDecimal total, String paymentType) {
         this.date = date;
         this.total = total;
         this.paymentType = paymentType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     public LocalDateTime getDate() {
