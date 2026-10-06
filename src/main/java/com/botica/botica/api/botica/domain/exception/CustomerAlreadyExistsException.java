@@ -1,0 +1,7 @@
+package com.botica.botica.api.botica.domain.exception;
+
+public class CustomerAlreadyExistsException extends RuntimeException {
+    public CustomerAlreadyExistsException(String message) {
+        super(message);
+    }
+}

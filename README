@@ -1,0 +1,46 @@
+# Botica API - Backend REST Service
+
+API RESTful desarrollada para la gestión operativa y comercial de la red de farmacias **Botica**,
+construida sobre **Spring Boot 3** e implementando una arquitectura de seguridad stateless
+basada en **OAuth2 Resource Server** y tokens **JWT (JSON Web Tokens)** con Control de Acceso Basado en Roles (**RBAC**).
+
+---
+
+## Tecnologías, Herramientas y Programas Utilizados
+
+### Stack Tecnológico (Backend & Seguridad)
+* **Lenguaje de Programación:** Java 26 (OpenJDK 26)
+* **Framework Principal:** Spring Boot 3.x
+  * **Spring Web:** Creación y exposición de servicios RESTful.
+  * **Spring Security 6:** Control de autenticación, gestión de sesiones y filtros de seguridad.
+  * **Spring OAuth2 Resource Server & JWT:** Validación y decodificación stateless de tokens JWT mediante HMAC-SHA256.
+  * **Spring Data JPA / Hibernate:** Mapeo objeto-relacional (ORM) y persistencia de datos.
+* **Base de Datos:** MySQL 8.x
+* **Gestor de Dependencias y Construcción:** Apache Maven
+
+---
+
+### Programas y Software de Desarrollo
+* **IDE (Entorno de Desarrollo Integrado):** IntelliJ IDEA
+* **Plugin de IDE:** **EnvFile** (para vincular el archivo `.env` en la ejecución local sin exponer credenciales en el código).
+* **Gestor de Base de Datos:** MySQL Workbench / DBeaver
+* **Cliente HTTP & Pruebas de API:** Postman (para pruebas de autenticación `POST /auth/login`,
+    consumo de endpoints protegidos y verificación de respuestas `403 Forbidden`).
+* **Control de Versiones:** Git & GitHub (con protección de claves en `.gitignore`).
+
+---
+
+## Módulos Principales del Dominio
+
+* **1. Módulo de Autenticación & Seguridad (`/auth`):**
+  * Control de acceso unificado mediante usuarios y contraseñas cifradas con **BCrypt**.
+  * Emisión de tokens **JWT** firmados con HMAC-SHA256 conteniendo claims y roles asignados.
+
+* **2. Módulo de Productos y Medicamentos (`/products`):**
+  * Gestión del catálogo de productos farmacéuticos (código, nombre, descripción, precio, stock disponible).
+
+* **3. Módulo de Clientes (`/customers`):**
+  * Registro y mantenimiento de datos de clientes (DNI/RUC, nombres, teléfono, correo).
+
+* **4. Módulo de Órdenes y Ventas (`/orders`):**
+  * Registro de transacciones comerciales, asociación de productos y cálculo de montos.

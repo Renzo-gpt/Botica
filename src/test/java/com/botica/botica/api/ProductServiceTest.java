@@ -1,10 +1,10 @@
 package com.botica.botica.api;
 
-import com.botica.botica.api.producto.application.port.out.ProductRepositoryPort;
-import com.botica.botica.api.producto.application.service.ProductService;
-import com.botica.botica.api.producto.domain.exception.ProductInactiveException;
-import com.botica.botica.api.producto.domain.exception.ProductNotFoundException;
-import com.botica.botica.api.producto.domain.model.Product;
+import com.botica.botica.api.botica.application.port.out.ProductRepositoryPort;
+import com.botica.botica.api.botica.application.service.ProductService;
+import com.botica.botica.api.botica.domain.exception.ProductInactiveException;
+import com.botica.botica.api.botica.domain.exception.ProductNotFoundException;
+import com.botica.botica.api.botica.domain.model.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

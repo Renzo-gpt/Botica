@@ -1,10 +1,10 @@
 package com.botica.botica.api;
 
-import com.botica.botica.api.producto.application.port.in.CreateCustomerCommand;
-import com.botica.botica.api.producto.application.port.out.CustomerRepositoryPort;
-import com.botica.botica.api.producto.application.service.CustomerService;
-import com.botica.botica.api.producto.domain.exception.CustomerAlreadyExistsException;
-import com.botica.botica.api.producto.domain.model.Customer;
+import com.botica.botica.api.botica.application.port.in.CreateCustomerCommand;
+import com.botica.botica.api.botica.application.port.out.CustomerRepositoryPort;
+import com.botica.botica.api.botica.application.service.CustomerService;
+import com.botica.botica.api.botica.domain.exception.CustomerAlreadyExistsException;
+import com.botica.botica.api.botica.domain.model.Customer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

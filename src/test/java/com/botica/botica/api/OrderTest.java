@@ -1,6 +1,6 @@
 package com.botica.botica.api;
 
-import com.botica.botica.api.producto.domain.model.Order;
+import com.botica.botica.api.botica.domain.model.Order;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
