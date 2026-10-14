@@ -4,6 +4,8 @@ import com.botica.botica.api.botica.application.port.in.CreateOrderCommand;
 import com.botica.botica.api.botica.application.port.in.CreateOrderUseCase;
 import com.botica.botica.api.botica.application.port.in.GetOrderUseCase;
 import com.botica.botica.api.botica.domain.model.Order;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.OrderRequestDto;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.OrderResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

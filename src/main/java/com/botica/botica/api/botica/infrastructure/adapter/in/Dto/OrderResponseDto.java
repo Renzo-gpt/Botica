@@ -1,26 +1,17 @@
-package com.botica.botica.api.botica.infrastructure.adapter.in;
-
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+package com.botica.botica.api.botica.infrastructure.adapter.in.Dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class OrderRequestDto {
+public class OrderResponseDto {
 
     private LocalDateTime date;
-
-    @NotNull(message = "El monto total es obligatorio")
-    @Positive(message = "El total de la orden debe ser mayor a cero")
     private BigDecimal total;
-
-    @NotBlank(message = "El tipo de pago es obligatorio")
     private String paymentType;
 
-    public OrderRequestDto(){}
+    public OrderResponseDto(){}
 
-    public OrderRequestDto(LocalDateTime date, BigDecimal total, String paymentType) {
+    public OrderResponseDto(LocalDateTime date, BigDecimal total, String paymentType) {
         this.date = date;
         this.total = total;
         this.paymentType = paymentType;

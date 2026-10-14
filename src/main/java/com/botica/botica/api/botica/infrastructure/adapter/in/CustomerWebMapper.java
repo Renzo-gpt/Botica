@@ -2,6 +2,8 @@ package com.botica.botica.api.botica.infrastructure.adapter.in;
 
 import com.botica.botica.api.botica.application.port.in.CreateCustomerCommand;
 import com.botica.botica.api.botica.domain.model.Customer;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.CustomerRequestDto;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.CustomerResponseDto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.botica.botica.api.botica.infrastructure.adapter.in;
+package com.botica.botica.api.botica.infrastructure.adapter.in.Dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

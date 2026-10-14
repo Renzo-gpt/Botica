@@ -2,6 +2,8 @@ package com.botica.botica.api.botica.infrastructure.adapter.in;
 
 import com.botica.botica.api.botica.application.port.in.*;
 import com.botica.botica.api.botica.domain.model.Product;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.ProductRequestDto;
+import com.botica.botica.api.botica.infrastructure.adapter.in.Dto.ProductResponseDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,26 +26,26 @@ public class ProductController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponseDto create (@Valid @RequestBody ProductRequestDto productRequest){
-        CreateProductCommand createProductCommand = ProductWebMapper.toCommand(productRequest);
+        CreateProductCommand createProductCommand = CustomerController.ProductWebMapper.toCommand(productRequest);
         Product product = createProductUseCase.create(createProductCommand);
-        return ProductWebMapper.toProductResponseDto(product);
+        return CustomerController.ProductWebMapper.toProductResponseDto(product);
     }
 
     @GetMapping
     public List<ProductResponseDto> findAll(){
-        return ProductWebMapper.toListProductResponseDto(getProductUseCase.findAll());
+        return CustomerController.ProductWebMapper.toListProductResponseDto(getProductUseCase.findAll());
     }
 
     @GetMapping("/{id}")
     public ProductResponseDto findById(@PathVariable Long id){
-        return ProductWebMapper.toProductResponseDto(getProductUseCase.findById(id));
+        return CustomerController.ProductWebMapper.toProductResponseDto(getProductUseCase.findById(id));
 
     }
 
     @PutMapping("/{id}")
     public ProductResponseDto update(@PathVariable Long id,@Valid @RequestBody ProductRequestDto productRequest){
-        UpdateProductCommand updateCommand = ProductWebMapper.toUpdateCommand(id, productRequest);
+        UpdateProductCommand updateCommand = CustomerController.ProductWebMapper.toUpdateCommand(id, productRequest);
         Product updateProduct = updateProductUseCase.update(updateCommand);
-        return ProductWebMapper.toProductResponseDto(updateProduct);
+        return CustomerController.ProductWebMapper.toProductResponseDto(updateProduct);
     }
 }

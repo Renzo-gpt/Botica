@@ -6,6 +6,8 @@ import com.botica.botica.api.botica.application.port.in.GetOrderUseCase;
 import com.botica.botica.api.botica.application.port.out.OrderRepositoryPort;
 import com.botica.botica.api.botica.domain.exception.OrderNotFoundException;
 import com.botica.botica.api.botica.domain.model.Order;
+import com.botica.botica.api.botica.domain.payment.PaymentStrategy;
+import com.botica.botica.api.botica.domain.payment.PaymentStrategyFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,9 +24,13 @@ public class OrderService implements CreateOrderUseCase, GetOrderUseCase {
     @Override
     public Order create(CreateOrderCommand orderCmd) {
         Order order = new Order();
-                order.setTotal(orderCmd.getTotal());
-                order.setPaymentType(orderCmd.getPaymentType());
-                order.setDate(LocalDateTime.now());
+
+        PaymentStrategy strategy = PaymentStrategyFactory.getStrategy(orderCmd.getPaymentType());
+
+        order.setTotal(strategy.calculateTotal(orderCmd.getTotal()));
+        order.setPaymentType(orderCmd.getPaymentType());
+        order.setDate(LocalDateTime.now());
+
         return this.orderRepositoryPort.save(order);
     }
 
@@ -36,6 +42,6 @@ public class OrderService implements CreateOrderUseCase, GetOrderUseCase {
     @Override
     public Order findById(Long id) {
         return this.orderRepositoryPort.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Product not found with id: " + id));
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
     }
 }
