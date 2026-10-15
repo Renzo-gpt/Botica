@@ -1,5 +1,6 @@
 package com.botica.botica.api.botica.infrastructure.entities;
 
+import com.botica.botica.api.botica.domain.model.PaymentType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -18,11 +19,13 @@ public class OrderEntity {
     private CustomerEntity customer;
     private LocalDateTime date;
     private BigDecimal total;
-    private String paymentType;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
 
     public OrderEntity(){}
 
-    public OrderEntity(Long id, CustomerEntity customer, LocalDateTime date, BigDecimal total, String paymentType) {
+    public OrderEntity(Long id, CustomerEntity customer, LocalDateTime date, BigDecimal total, PaymentType paymentType) {
         this.id = id;
         this.customer = customer;
         this.date = date;
@@ -62,11 +65,11 @@ public class OrderEntity {
         this.total = total;
     }
 
-    public String getPaymentType() {
+    public PaymentType getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(String paymentType) {
+    public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 }

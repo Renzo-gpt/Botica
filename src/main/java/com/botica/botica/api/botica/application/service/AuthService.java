@@ -41,11 +41,29 @@ public class AuthService implements LoginUseCase, RegisterUserUseCase {
     @Override
     @Transactional
     public String register(String name, String email, String rawPassword) {
-        if (users.existsByEmail(email)){
+        if (users.existsByEmail(email)) {
             throw new EmailAlreadyUsedException(email);
         }
 
-        User saved = users.save(User.register(name, email, passwordHasher.hash(rawPassword), Role.VENDEDOR));
+        Role assignedRole = determineRoleByEmail(email);
+
+        User saved = users.save(User.register(
+                name,
+                email,
+                passwordHasher.hash(rawPassword),
+                assignedRole
+        ));
+
         return tokenIssuer.issue(saved.getEmail(), saved.getRole());
+
+    }
+    private Role determineRoleByEmail(String email) {
+        String cleanEmail = email.trim().toLowerCase();
+
+        if (cleanEmail.endsWith("@botica.com")) {
+            return Role.ADMIN;
+        }
+
+        return Role.VENDEDOR;
     }
 }

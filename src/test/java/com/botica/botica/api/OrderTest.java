@@ -1,6 +1,7 @@
 package com.botica.botica.api;
 
 import com.botica.botica.api.botica.domain.model.Order;
+import com.botica.botica.api.botica.domain.model.PaymentType;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ public class OrderTest {
     void shouldCreateOrderWithCorrectAttributes() {
         LocalDateTime now = LocalDateTime.now();
         BigDecimal total = new BigDecimal("150.00");
-        String paymentType = "EFECTIVO";
+        PaymentType paymentType = PaymentType.EFECTIVO;
 
         Order order = new Order();
         order.setId(1L);

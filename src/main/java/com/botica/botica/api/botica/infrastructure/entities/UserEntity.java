@@ -4,6 +4,8 @@ import com.botica.botica.api.botica.domain.model.Role;
 import com.botica.botica.api.botica.domain.model.User;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -25,15 +27,26 @@ public class UserEntity {
     @Column(nullable = false, length = 20)
     private Role role;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String name, String email, String password, Role role) {
+    public UserEntity(Long id, String name, String email, String password, Role role, LocalDateTime createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
     }
 
     public static UserEntity fromDomain(User user) {
@@ -42,12 +55,13 @@ public class UserEntity {
                 user.getName(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getRole()
+                user.getRole(),
+                user.getCreatedAt() != null ? user.getCreatedAt() : LocalDateTime.now()
         );
     }
 
     public User toDomain() {
-        return new User(id, name, email, password, role);
+        return new User(id, name, email, password, role, createdAt);
     }
 
     public Long getId() {
@@ -88,5 +102,13 @@ public class UserEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

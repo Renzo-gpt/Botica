@@ -34,9 +34,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers("/auth/**", "/error/").permitAll()
-                        .requestMatchers("/admin/**", "/products/**").hasRole("ADMIN")
-                        .requestMatchers("/ventas/**").hasAnyRole("VENDEDOR", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/**").hasAnyRole("VENDEDOR", "ADMIN")
+                        .requestMatchers("/products/**").hasRole("ADMIN")
+                        .requestMatchers("/customers/**").hasAnyRole("VENDEDOR", "ADMIN")
+                        .requestMatchers("/orders/**").hasAnyRole("VENDEDOR", "ADMIN")
                         .anyRequest().authenticated())
+
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(errorHandler)
                         .accessDeniedHandler(errorHandler))

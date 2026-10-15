@@ -9,11 +9,11 @@ public class Order {
     private Long customerId;
     private LocalDateTime date;
     private BigDecimal total;
-    private String paymentType;
+    private PaymentType paymentType;
 
     public Order() {}
 
-    public Order(Long id, Long customerId, LocalDateTime date, BigDecimal total, String paymentType) {
+    public Order(Long id, Long customerId, LocalDateTime date, BigDecimal total, PaymentType paymentType) {
         this.id = id;
         this.customerId = customerId;
         this.date = date;
@@ -53,11 +53,11 @@ public class Order {
         this.total = total;
     }
 
-    public String getPaymentType() {
+    public PaymentType getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(String paymentType) {
+    public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 }

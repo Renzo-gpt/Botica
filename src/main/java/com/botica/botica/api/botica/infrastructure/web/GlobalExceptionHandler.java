@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({HttpMessageNotReadableException.class, IllegalArgumentException.class})
     public ResponseEntity<ErrorResponse> handleBadRequest(Exception ex) {
-        return build(HttpStatus.BAD_REQUEST, "Invalid request", List.of());
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), List.of());
     }
 
     private ResponseEntity<ErrorResponse> build(HttpStatus status, String message, List<String> details) {

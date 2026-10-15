@@ -1,5 +1,8 @@
 package com.botica.botica.api.botica.infrastructure.adapter.in.Dto;
 
+import com.botica.botica.api.botica.domain.model.PaymentType;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -9,6 +12,8 @@ import java.time.LocalDateTime;
 
 public class OrderRequestDto {
 
+    @NotNull(message = "La fecha es obligatoria")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime date;
 
     @NotNull(message = "El monto total es obligatorio")
